@@ -13,6 +13,10 @@ const Routing = [
         element : AddTask
     },
     {
+        path : '/updateTask/:id',
+        element : AddTask
+    },
+    {
         path : '*',
         element : Error
     },
