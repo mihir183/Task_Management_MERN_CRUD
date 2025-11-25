@@ -15,14 +15,30 @@ router.get("/get", async (req, res) => {
   res.json(tasks);
 });
 
+//Single Data
+router.get("/get/:id", async (req, res) => {
+  try {
+    const task = await Task.findById(req.params.id);
+
+    if (!task) {
+      return res.status(404).json({ message: "Task Not Found" });
+    }
+
+    res.json(task);
+
+  } catch (err) {
+    res.status(500).json({ message: "Server Error", error: err.message });
+  }
+});
+
 // UPDATE
-router.put("/update:id", async (req, res) => {
+router.put("/update/:id", async (req, res) => {
   const task = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
   res.json(task);
 });
 
 // DELETE
-router.delete("/delete:id", async (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
   await Task.findByIdAndDelete(req.params.id);
   res.json({ message: "Task Deleted" });
 });
