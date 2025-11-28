@@ -38,6 +38,7 @@ const AddTaskForm = () => {
     }
     else{
       await api.put(`/update/${id}`,data)
+      alert("Task Updated..!")
       navigate('/')
     }
   }
